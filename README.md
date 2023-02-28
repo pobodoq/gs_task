@@ -3,8 +3,7 @@
 ## Usage
 1. docker-compose up
 2. docker exec gstask_api php artisan migrate
-3. docker exec gstask_api php artisan l5-swagger:generate
-4. http://localhost:8080
+3. http://localhost:8080
 
 ## Infrastructure
 Run docker-compose up
@@ -21,7 +20,7 @@ docker exec gstask_api php artisan db:seed
 ```
 
 ## Documentation
-Generate OpenAPI documentation
+Generate OpenAPI documentation (already generated)
 ```sh
 docker exec gstask_api php artisan l5-swagger:generate
 ```
