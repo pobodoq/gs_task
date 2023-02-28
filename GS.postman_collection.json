@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "a7d86163-f94d-4a94-8cee-74be97c0949f",
+		"name": "GS",
+		"description": "## GlobalSoft",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14858577"
+	},
+	"item": [
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@secretagent.com\",\n    \"phoneNumber\": \"+38763123007\",\n    \"street\": \"Trafalgar Square\",\n    \"houseNumber\": \"13a\",\n    \"postCode\": \"WC2N 5DU\",\n    \"city\": \"Westminster\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						},
+						"description": "Create a new Customer"
+					},
+					"response": []
+				},
+				{
+					"name": "READ",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1"
+							]
+						},
+						"description": "Retrieve the Customer with the specified ID"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"phoneNumber\": \"+38763123007\",\n    \"street\": \"Trafalgar Square\",\n    \"houseNumber\": \"13a\",\n    \"postCode\": \"WC2N 5DU\",\n    \"city\": \"Westminster\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1"
+							]
+						},
+						"description": "Update the Customer with the specified ID"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"3"
+							]
+						},
+						"description": "Delete the Customer with the specified ID"
+					},
+					"response": []
+				},
+				{
+					"name": "READALL",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						},
+						"description": "Retrieve all Customers"
+					},
+					"response": []
+				},
+				{
+					"name": "READWITHFILTER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/?filter[lastName]=Doe&filter[firstName]=John",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "filter[lastName]",
+									"value": "Doe"
+								},
+								{
+									"key": "filter[firstName]",
+									"value": "John"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "#### The service should have five routes in total. The routes should cover all CRUD operations that can be performed on Customers:\n\n- `GET` /customers Retrieve all Customers\n- `POST` /customers Create a new Customer\n- `GET` /customers/{id} Retrieve the Customer with the specified ID\n- `PUT` /customers/{id} Update the Customer with the specified ID\n- `DELETE` /customers/{id} Delete the Customer with the specified ID\n    \n\n#### Data that is sent to and from the service should be encoded as JSON.  \nWhen creating or updating a Customer, the data should look like this:\n\n``` json\n{\n    \"firstName\": \"Ivan\",\n    \"lastName\": \"Horvat\",\n    \"email\": \"ivan.horvat@example.com\",\n    \"phoneNumber\": \"+38763123456\",\n    \"street\": \"Dubrovačka\",\n    \"houseNumber\": \"13\",\n    \"postCode\": \"880000\",\n    \"city\": \"Mostar\"\n}\n\n```\n\nWhen retrieving Customers, the data should also include the Customer ID."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000/api/customers",
+			"type": "string"
+		}
+	]
+}

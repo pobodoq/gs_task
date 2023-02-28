@@ -1,0 +1,119 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Customers API",
+        "description": "Customers API",
+        "contact": {
+            "name": "hej"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080/api/customers",
+            "description": "Customers API Server"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Display a listing of the resource.",
+                "operationId": "listCustomers",
+                "responses": {
+                    "200": {
+                        "description": "List of customers"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Store a newly created resource in storage.",
+                "operationId": "addCustomer",
+                "responses": {
+                    "200": {
+                        "description": "Customer added"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/{customerId}": {
+            "get": {
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Display the specified resource.",
+                "operationId": "showCustomer",
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customer showed"
+                    },
+                    "404": {
+                        "description": "Record not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Remove the specified resource from storage.",
+                "operationId": "deleteCustomer",
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customer deleted"
+                    },
+                    "404": {
+                        "description": "Record not found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Update the specified resource in storage.",
+                "operationId": "updateCustomer",
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customer updated"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "404": {
+                        "description": "Record not found"
+                    }
+                }
+            }
+        }
+    }
+}

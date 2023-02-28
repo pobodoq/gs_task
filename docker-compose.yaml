@@ -1,0 +1,55 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: db_api
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=gstask
+      - MYSQL_USER=gsuser
+      - MYSQL_PASSWORD=gsuser
+    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
+    ports:
+      - "13306:3306"
+    healthcheck:
+      test: "/etc/init.d/mysql status -u root -p $$MYSQL_ROOT_PASSWORD"
+      interval: 1s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    networks:
+     - gstask_api-network
+
+  gstask_api:
+    image: "gstask_api:latest"
+    build:
+      context: ./
+      dockerfile: ./docker/dockerfile
+    container_name: gstask_api
+    command: sh -c "php-fpm -F -R"
+    depends_on:
+      - mysql
+    networks:
+      - gstask_api-network
+
+  nginx-gstask_api:
+    image: nginx:1.23.3-alpine
+    container_name: nginx-gstask_api
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+      - "9000:9000"
+    volumes:
+      - "./:/var/www"
+      - "./docker/nginx/:/etc/nginx/conf.d/"
+    networks:
+      - gstask_api-network
+    depends_on:
+      - gstask_api
+    links:
+      - gstask_api
+
+networks:
+  gstask_api-network:
+    name: gstask_api-network
+    driver: bridge
